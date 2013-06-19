@@ -21,11 +21,39 @@ class Patient extends CI_Controller {
 	{
 		$this->load->view('patient_view');
 	}
-	public function uid($uid)
+	public function summary($uid)
 	{
 		$this->load->model('patient_model');
-		$data["record"] = $this->patient_model->get_record($uid);
+		$record = $this->patient_model->get_record($uid);
+		$data["demographics"] = $record->demographics;
+		$data["address"] = $record->address;
+		$data["allergies"] = $record->allergies;
+		$data["medications"] = $record->medications;
+		$data["immunizations"] = $record->immunizations;
+		$data["problems"] = $record->problems;
+		$data["procedures"] = $record->procedures;
+		$data["encounters"] = $record->encounters;
+		$data["vitalSigns"] = $record->vitalSigns;
+		$data["uid"] = $uid;
+		$this->load->helper('url');
 		$this->load->view('patient_view',$data);
+	}
+	public function timeline($uid)
+	{
+		$this->load->model('patient_model');
+		$record = $this->patient_model->get_record($uid);
+		$data["demographics"] = $record->demographics;
+		$data["address"] = $record->address;
+		$data["allergies"] = $record->allergies;
+		$data["medications"] = $record->medications;
+		$data["immunizations"] = $record->immunizations;
+		$data["problems"] = $record->problems;
+		$data["procedures"] = $record->procedures;
+		$data["encounters"] = $record->encounters;
+		$data["vitalSigns"] = $record->vitalSigns;
+		$data["uid"] = $uid;
+		$this->load->helper('url');
+		$this->load->view('timeline_view',$data);
 	}
 }
 
