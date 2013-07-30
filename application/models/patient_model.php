@@ -7,7 +7,7 @@ class Patient_model extends CI_Model {
     }
     function get_record($uid)
     {
-        $record = file_get_contents(getcwd()."/ccda.json");
+        $record = file_get_contents(getcwd()."/ccda/".$uid.".json");
         return json_decode($record);
     }
 
